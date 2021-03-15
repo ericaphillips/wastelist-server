@@ -1,0 +1,42 @@
+[
+    {
+        "model": "wastelistapi.pharmacy",
+        "pk": 1,
+        "fields": {
+            "name": "Kroger",
+            "address": "800 Monroe Street",
+            "zipcode": 37208,
+            "appointment_hours": "Monday-Friday 11AM-6PM, Saturday + Sunday 11AM-4PM"
+        }
+    },
+    {
+        "model": "wastelistapi.pharmacy",
+        "pk": 2,
+        "fields": {
+            "name": "Kroger",
+            "address": "3410 Gallatin Pike",
+            "zipcode": 37216,
+            "appointment_hours": "Monday-Friday 11AM-6PM, Saturday + Sunday 11AM-4PM"
+        }
+    },
+    {
+        "model": "wastelistapi.pharmacy",
+        "pk": 3,
+        "fields": {
+            "name": "Kroger",
+            "address": "711 Gallatin Ave",
+            "zipcode": 37206,
+            "appointment_hours": "Monday-Friday 11AM-6PM, Saturday + Sunday 11AM-4PM"
+        }
+    },
+    {
+        "model": "wastelistapi.pharmacy",
+        "pk": 4,
+        "fields": {
+            "name": "Kroger",
+            "address": "5705 Charlotte Pike",
+            "zipcode": 37209,
+            "appointment_hours": "Monday-Friday 11AM-6PM, Saturday + Sunday 11AM-4PM"
+        }
+    }
+]
