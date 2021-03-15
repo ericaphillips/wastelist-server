@@ -1,11 +1,10 @@
 {
-    "python.linting.pylintEnabled": true,
     "sqltools.connections": [
         {
             "previewLimit": 50,
             "driver": "SQLite",
-            "name": "wastelist",
-            "database": "db.sqlite3"
+            "database": "db.sqlite3",
+            "name": "wastelist"
         }
     ]
 }
