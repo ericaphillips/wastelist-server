@@ -1,0 +1,70 @@
+[
+    {
+        "model": "wastelistapi.wasteuser",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "phone": 8889203384,
+            "zipcode": 37208,
+            "pharmacyId": 1
+        }
+    },
+    {
+        "model": "wastelistapi.wasteuser",
+        "pk": 2,
+        "fields": {
+            "user": 2,
+            "phone": 8152638849,
+            "zipcode": 37216,
+            "pharmacyId": 2
+        }
+    },
+    {
+        "model": "wastelistapi.wasteuser",
+        "pk": 3,
+        "fields": {
+            "user": 3,
+            "phone": 8889203384,
+            "zipcode": 37208,
+            "pharmacyId": 1
+        }
+    },
+    {
+        "model": "wastelistapi.wasteuser",
+        "pk": 4,
+        "fields": {
+            "user": 4,
+            "phone": 8829304758,
+            "zipcode": 37206,
+            "pharmacyId": 3
+        }
+    },
+    {
+        "model": "wastelistapi.wasteuser",
+        "pk": 5,
+        "fields": {
+            "user": 5,
+            "phone": 8394026374,
+            "zipcode": 37209,
+            "pharmacyId": 4
+        }
+    },
+    {
+        "model": "wastelistapi.wasteuser",
+        "pk": 6,
+        "fields": {
+            "user": 6,
+            "phone": 364758697,
+            "zipcode": 37208
+        }
+    },
+    {
+        "model": "wastelistapi.wasteuser",
+        "pk": 7,
+        "fields": {
+            "user": 7,
+            "phone": 6784563345,
+            "zipcode": 37209
+        }
+    }
+]
