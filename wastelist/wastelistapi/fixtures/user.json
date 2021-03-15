@@ -1,0 +1,128 @@
+[
+    {
+        "model": "auth.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$216000$qMRH8szID7Z8$Vljya2V3XfruOHuvx1hGz9ZyKg4bxbw7rc2WO0gTR7I=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "kr1@kr1.com",
+            "first_name": "Pharmacist 1",
+            "last_name": "K",
+            "email": "kr1@kr1.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2020-08-28T14:51:39.989Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 2,
+        "fields": {
+            "password": "bbkdf2_sha256$216000$qMRH8szID7Z8$Vljya2V3XfruOHuvx1hGz9ZyKg4bxbw7rc2WO0gTR7I=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "kr2@kr2.com",
+            "first_name": "Pharmacist 2",
+            "last_name": "K",
+            "email": "kr2@kr2.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2020-08-28T15:51:39.989Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 3,
+        "fields": {
+            "password": "gbkdf2_sha256$216000$qMRH8szID7Z8$Vljya2V3XfruOHuvx1hGz9ZyKg4bxbw7rc2WO0gTR7I=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "kr3@kr3.com",
+            "first_name": "Pharmacist 3",
+            "last_name": "K",
+            "email": "kr3@kr3.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2020-08-28T16:51:39.989Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 4,
+        "fields": {
+            "password": "bbkdf2_sha256$216000$qMRH8szID7Z8$Vljya2V3XfruOHuvx1hGz9ZyKg4bxbw7rc2WO0gTR7I=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "kr4@kr4.com",
+            "first_name": "Pharmacist 4",
+            "last_name": "K",
+            "email": "kr4@kr4.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2020-08-28T17:51:39.989Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 5,
+        "fields": {
+            "password": "bbkdf2_sha256$216000$qMRH8szID7Z8$Vljya2V3XfruOHuvx1hGz9ZyKg4bxbw7rc2WO0gTR7I=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "kr5@kr5.com",
+            "first_name": "Pharmacist 5",
+            "last_name": "K",
+            "email": "kr5@kr5.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2020-08-28T18:51:39.989Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 6,
+        "fields": {
+            "password": "bbkdf2_sha256$216000$qMRH8szID7Z8$Vljya2V3XfruOHuvx1hGz9ZyKg4bxbw7rc2WO0gTR7I=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "c1@c1.com",
+            "first_name": "Customer 1",
+            "last_name": "A",
+            "email": "c1@c1.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2020-08-28T13:51:39.989Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 7,
+        "fields": {
+            "password": "bbkdf2_sha256$216000$qMRH8szID7Z8$Vljya2V3XfruOHuvx1hGz9ZyKg4bxbw7rc2WO0gTR7I=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "c2@c2.com",
+            "first_name": "Customer 2",
+            "last_name": "A",
+            "email": "c2@c2.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2020-08-28T14:51:39.989Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    }
+]
