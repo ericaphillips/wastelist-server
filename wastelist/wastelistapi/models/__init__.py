@@ -1,0 +1,1 @@
+from .wasteuser import WasteUser
