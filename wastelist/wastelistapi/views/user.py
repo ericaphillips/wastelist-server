@@ -25,6 +25,19 @@ class Users(ViewSet):
         
         return Response(serializer.data)
 
+    def list(self, request):
+        """Handle GET requests to User resource
+        Returns: Response -- JSON serialized list of users
+        """
+        
+        users = User.objects.all()
+
+        serializer = UserSerializer(
+            users, many=True, context={'request': request}
+        )
+        return Response(serializer.data)
+
+
 class UserSerializer(serializers.ModelSerializer):
     """JSON serializer for Users
     Arguments: Serializer type
