@@ -50,6 +50,40 @@ class Pharmacies(ViewSet):
         except Exception as ex:
             return HttpResponseServerError(ex)
 
+    def list(self, request):
+        """Handle GET requests to resource
+        Returns:
+            Response -- JSON serialized list of pharmacies
+        """
+        # Get all pharmacy records from the database
+        pharmacies = Pharmacy.objects.all()
+
+        # Support filtering by type
+        
+        serializer = PharmacySerializer(
+            pharmacies, many=True, context={'request': request})
+        return Response(serializer.data)
+
+    def update(self, request, pk=None):
+       
+        pharmacy = Pharmacy.objects.get(pk=pk)
+        pharmacy.label = request.data['label']
+        pharmacy.save()
+        # 204 status send back
+        return Response({}, status=status.HTTP_204_NO_CONTENT)
+
+    def destroy(self, request, pk=None):
+        #Handle DELETE requests/ single pharmacy, returns 200, 404, or 500 status code
+        try:
+            pharmacy = Pharmacy.objects.get(pk=pk)
+            pharmacy.delete()
+            return Response({}, status=status.HTTP_204_NO_CONTENT)
+
+        except Pharmacy.DoesNotExist as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
+        except Exception as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
 class PharmacySerializer(serializers.ModelSerializer):
     """JSON serializer
     Argument:
