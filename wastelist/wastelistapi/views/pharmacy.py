@@ -34,6 +34,22 @@ class Pharmacies(ViewSet):
         except ValidationError as ex:
             return Response({"reason": ex.message}, status=status.HTTP_400_BAD_REQUEST)
 
+    def retrieve(self, request, pk=None):
+        """Handle GET requests for a single pharmacy
+        Returns: Response -- JSON serialized pharmacy instance
+        """
+        try:
+            # `pk` is a parameter to this function, and
+            # Django parses it from the URL route parameter
+            #   http://localhost:8000/pharmacies/2
+            #
+            # The `2` at the end of the route becomes `pk`
+            pharmacy = Pharmacy.objects.get(pk=pk)
+            serializer = PharmacySerializer(pharmacy, context={'request': request})
+            return Response(serializer.data)
+        except Exception as ex:
+            return HttpResponseServerError(ex)
+
 class PharmacySerializer(serializers.ModelSerializer):
     """JSON serializer
     Argument:
