@@ -3,7 +3,7 @@
         "model": "auth.user",
         "pk": 1,
         "fields": {
-            "password": "kr1",
+            "password": "pbkdf2_sha256$216000$6vtWI1Stxf4v$s+i6LcrpN5gGzJr6i0TZNCwnGumgjN5/AlpHwLjfEj0=",
             "last_login": null,
             "is_superuser": false,
             "username": "kr1@kr1.com",
@@ -21,7 +21,7 @@
         "model": "auth.user",
         "pk": 2,
         "fields": {
-            "password": "kr2",
+            "password": "pbkdf2_sha256$216000$6vtWI1Stxf4v$s+i6LcrpN5gGzJr6i0TZNCwnGumgjN5/AlpHwLjfEj0=",
             "last_login": null,
             "is_superuser": false,
             "username": "kr2@kr2.com",
@@ -39,7 +39,7 @@
         "model": "auth.user",
         "pk": 3,
         "fields": {
-            "password": "kr3",
+            "password": "pbkdf2_sha256$216000$6vtWI1Stxf4v$s+i6LcrpN5gGzJr6i0TZNCwnGumgjN5/AlpHwLjfEj0=",
             "last_login": null,
             "is_superuser": false,
             "username": "kr3@kr3.com",
@@ -57,7 +57,7 @@
         "model": "auth.user",
         "pk": 4,
         "fields": {
-            "password": "kr4",
+            "password": "pbkdf2_sha256$216000$6vtWI1Stxf4v$s+i6LcrpN5gGzJr6i0TZNCwnGumgjN5/AlpHwLjfEj0=",
             "last_login": null,
             "is_superuser": false,
             "username": "kr4@kr4.com",
@@ -75,7 +75,7 @@
         "model": "auth.user",
         "pk": 5,
         "fields": {
-            "password": "kr5",
+            "password": "pbkdf2_sha256$216000$6vtWI1Stxf4v$s+i6LcrpN5gGzJr6i0TZNCwnGumgjN5/AlpHwLjfEj0=",
             "last_login": null,
             "is_superuser": false,
             "username": "kr5@kr5.com",
@@ -93,7 +93,7 @@
         "model": "auth.user",
         "pk": 6,
         "fields": {
-            "password": "c1",
+            "password": "pbkdf2_sha256$216000$6vtWI1Stxf4v$s+i6LcrpN5gGzJr6i0TZNCwnGumgjN5/AlpHwLjfEj0=",
             "last_login": null,
             "is_superuser": false,
             "username": "c1@c1.com",
@@ -111,7 +111,7 @@
         "model": "auth.user",
         "pk": 7,
         "fields": {
-            "password": "c1",
+            "password": "pbkdf2_sha256$216000$6vtWI1Stxf4v$s+i6LcrpN5gGzJr6i0TZNCwnGumgjN5/AlpHwLjfEj0=",
             "last_login": null,
             "is_superuser": false,
             "username": "c2@c2.com",
