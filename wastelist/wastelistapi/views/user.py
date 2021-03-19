@@ -30,9 +30,9 @@ class Users(ViewSet):
         Returns: Response -- JSON serialized list of users
         """
         
-        users = User.objects.all()
+        users = WasteUser.objects.all()
 
-        serializer = UserSerializer(
+        serializer = WasteUserSerializer(
             users, many=True, context={'request': request}
         )
         return Response(serializer.data)
@@ -55,3 +55,4 @@ class WasteUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = WasteUser
         fields = ('id', 'user', 'phone', 'zipcode', 'pharmacy')
+        depth = 2
