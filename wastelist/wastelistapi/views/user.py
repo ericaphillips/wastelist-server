@@ -55,4 +55,4 @@ class WasteUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = WasteUser
         fields = ('id', 'user', 'phone', 'zipcode', 'pharmacy')
-        depth = 1
+        depth = 2
