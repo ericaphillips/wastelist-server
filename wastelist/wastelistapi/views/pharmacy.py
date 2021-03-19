@@ -67,7 +67,10 @@ class Pharmacies(ViewSet):
     def update(self, request, pk=None):
        
         pharmacy = Pharmacy.objects.get(pk=pk)
-        pharmacy.label = request.data['label']
+        pharmacy.name = request.data['name']
+        pharmacy.address = request.data['address']
+        pharmacy.zipcode = request.data['zipcode']
+        pharmacy.appointment_hours = request.data['appointment_hours']
         pharmacy.save()
         # 204 status send back
         return Response({}, status=status.HTTP_204_NO_CONTENT)
