@@ -33,5 +33,5 @@ urlpatterns = [
     # Requests to http://localhost:8000/login will be routed to the login_user function
     path('login', login_user),
     path('api-auth', include('rest_framework.urls', namespace='rest_framework')),
-
+    # (r'^messages/', include('django_messages.urls')),
 ]

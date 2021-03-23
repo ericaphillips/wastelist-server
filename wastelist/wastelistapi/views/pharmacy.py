@@ -4,9 +4,10 @@ from rest_framework import status
 from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
+from rest_framework.decorators import action
 from rest_framework import serializers
 from rest_framework import status
-from wastelistapi.models import Pharmacy
+from wastelistapi.models import Pharmacy, WasteUser, PharmacyCustomer
 
 class Pharmacies(ViewSet):
     # handle POST operations, returns JSON serialized pharmacy instance
@@ -58,6 +59,7 @@ class Pharmacies(ViewSet):
         # Get all pharmacy records from the database
         pharmacies = Pharmacy.objects.all()
 
+
         # Support filtering by type
         
         serializer = PharmacySerializer(
@@ -86,6 +88,65 @@ class Pharmacies(ViewSet):
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
         except Exception as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    @action(methods=['post', 'delete'], detail=True)
+    def modifyCustomers(self, request, pk=None):
+        """Managing customers selecting and deselecting pharmacies"""
+
+        # A user wants add a pharmacy to their list
+        if request.method == "POST":
+            
+            pharmacy = Pharmacy.objects.get(pk=pk)
+
+            # Django uses the `Authorization` header to determine
+            # which user is making the request
+            customer = WasteUser.objects.get(user = request.auth.user)
+
+            try:
+                # Determine if the customer is already signed up
+                adding = PharmacyCustomer.objects.get(
+                    pharmacy=pharmacy, customer=customer)
+                return Response(
+                    {'message': 'You have already selected this pharmacy'},
+                    status=status.HTTP_422_UNPROCESSABLE_ENTITY
+                )
+            except PharmacyCustomer.DoesNotExist:
+                # The user is not signed up.
+                adding = PharmacyCustomer()
+                adding.pharmacy = pharmacy
+                adding.customer = customer
+                adding.save()
+
+                return Response({}, status=status.HTTP_201_CREATED)
+
+        # Customer wants to un-select pharmacy from their list
+        elif request.method == "DELETE":
+            # Handle the case if the client specifies a pharmacy that doesn't exist
+            try:
+                pharmacy = Pharmacy.objects.get(pk=pk)
+                customer = self.request.query_params.get('userId', None)
+            except Pharmacy.DoesNotExist:
+                return Response(
+                    {'message': 'Pharmacy does not exist.'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+
+            try:
+                # Try to delete the signup
+                adding = PharmacyCustomer.objects.get(
+                    pharmacy=pharmacy, customer=customer)
+                adding.delete()
+                return Response(None, status=status.HTTP_204_NO_CONTENT)
+
+            except PharmacyCustomer.DoesNotExist:
+                return Response(
+                    {'message': 'Not currently signed up for this pharmacy'},
+                    status=status.HTTP_404_NOT_FOUND
+                )
+        # If the client performs a request with a method of
+        # anything other than POST or DELETE, tell client that
+        # the method is not supported
+        return Response({}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
 class PharmacySerializer(serializers.ModelSerializer):
     """JSON serializer

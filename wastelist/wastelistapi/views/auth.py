@@ -24,11 +24,17 @@ def login_user(request):
         username = req_body['username']
         password = req_body['password']
         authenticated_user = authenticate(username=username, password=password)
-
+        
         # If authentication was successful, respond with their token
         if authenticated_user is not None:
             token = Token.objects.get(user=authenticated_user)
-            data = json.dumps({"valid": True, "token": token.key})
+            waste_user = WasteUser.objects.get(user=authenticated_user)
+            pharmacist = False
+
+            if waste_user.pharmacy is not None:
+                pharmacist = True
+
+            data = json.dumps({"valid": True, "token": token.key, "pharmacist": pharmacist})
             return HttpResponse(data, content_type='application/json')
 
         else:
@@ -71,7 +77,8 @@ def register_user(request):
 
     # Use the REST Framework's token generator on the new user account
     token = Token.objects.create(user=new_user)
+    pharmacist = False
 
     # Return the token to the client
-    data = json.dumps({"token": token.key})
+    data = json.dumps({"token": token.key, "pharmacist": pharmacist})
     return HttpResponse(data, content_type='application/json')
