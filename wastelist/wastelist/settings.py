@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'corsheaders',
     'wastelistapi',
+    # 'django_messages',
 ]
 
 REST_FRAMEWORK = {

@@ -5,3 +5,11 @@ class Pharmacy(models.Model):
     address = models.CharField(max_length=500)
     zipcode = models.IntegerField()
     appointment_hours = models.CharField(max_length=200)
+
+    @property
+    def customers(self):
+            return self.__customers
+
+    @customers.setter
+    def tags(self, value):
+            self.__customers = value 
