@@ -7,3 +7,11 @@ class WasteUser(models.Model):
     phone = models.IntegerField()
     zipcode = models.IntegerField()
     pharmacy = models.ForeignKey("Pharmacy", on_delete=CASCADE, null = True)
+
+    @property
+    def pharmacies(self):
+        return self.__pharmacies
+
+    @pharmacies.setter
+    def pharmacies(self, value):
+        self.__pharmacies = value 

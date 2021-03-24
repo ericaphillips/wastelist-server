@@ -155,5 +155,5 @@ class PharmacySerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Pharmacy
-        fields = ('id', 'name', 'address', 'zipcode', 'appointment_hours')
+        fields = ('id', 'name', 'address', 'zipcode', 'appointment_hours', 'customers')
         depth = 1
