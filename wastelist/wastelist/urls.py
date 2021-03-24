@@ -18,12 +18,14 @@ from django.contrib import admin
 from django.conf.urls import include
 from django.urls import path
 from wastelistapi.views import register_user, login_user
-from wastelistapi.views import Pharmacies, Users
+from wastelistapi.views import Pharmacies, Users, Profile, Messages   
 
 router = routers.DefaultRouter(trailing_slash=False)
 
 router.register(r'pharmacies', Pharmacies, 'pharmacy')
 router.register(r'users', Users, 'user')
+router.register(r'profile', Profile, 'profile')
+router.register(r'messages', Messages, 'message')
 
 urlpatterns = [
     path('', include(router.urls)),
