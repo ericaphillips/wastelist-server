@@ -1,3 +1,4 @@
+from io import SEEK_END
 from django.core.exceptions import ValidationError
 from django.db import models
 from rest_framework import status
@@ -7,12 +8,15 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework import serializers
 from rest_framework import status
-from wastelistapi.models import Pharmacy, WasteUser, PharmacyCustomer
+from wastelistapi.models import Pharmacy, WasteUser, PharmacyCustomer, pharmacy
+from django.contrib.auth.models import User
+
 
 class Pharmacies(ViewSet):
     # handle POST operations, returns JSON serialized pharmacy instance
     def create(self, request):
-        # Create a new Python instance of the class
+        # Create a new Python instance of the class (object instance)
+        # Assigning properties of values
         # and set its properties from what was sent
         # in the body of the request from the client
         pharmacy = Pharmacy()
@@ -23,7 +27,7 @@ class Pharmacies(ViewSet):
 
         # Try to save the new pharmacy to the database
         # Then serialize the instance as JSON
-        # And send the JSON as a response to the client request
+        # And send the JSON as a response to the client request (line 34)
         try:
             pharmacy.save()
             serializer = PharmacySerializer(pharmacy, context={'request': request})
@@ -46,7 +50,9 @@ class Pharmacies(ViewSet):
             #
             # The `2` at the end of the route becomes `pk`
             pharmacy = Pharmacy.objects.get(pk=pk)
-            serializer = PharmacySerializer(pharmacy, context={'request': request})
+            pharmacy.customers = WasteUser.objects.filter(pharmacycustomers__pharmacy=pharmacy)
+
+            serializer = PharmacyCustomerSerializer(pharmacy, context={'request': request})
             return Response(serializer.data)
         except Exception as ex:
             return HttpResponseServerError(ex)
@@ -124,12 +130,14 @@ class Pharmacies(ViewSet):
             # Handle the case if the client specifies a pharmacy that doesn't exist
             try:
                 pharmacy = Pharmacy.objects.get(pk=pk)
-                customer = self.request.query_params.get('userId', None)
+                
             except Pharmacy.DoesNotExist:
                 return Response(
                     {'message': 'Pharmacy does not exist.'},
                     status=status.HTTP_400_BAD_REQUEST
                 )
+
+            customer = WasteUser.objects.get(user=request.auth.user)
 
             try:
                 # Try to delete the signup
@@ -148,12 +156,79 @@ class Pharmacies(ViewSet):
         # the method is not supported
         return Response({}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
+    @action(methods=['get'], detail=False)
+    def pharmacist(self, request, pk=None):
+        if request.method == "GET":
+
+            myPharmacy = self.request.query_params.get('myPharmacy', None)
+            if myPharmacy == "true":
+                user = WasteUser.objects.get(user=request.auth.user)
+                pharmacyId = user.pharmacy_id
+                pharmacy = Pharmacy.objects.get(id=pharmacyId)
+                pharmacy.customers = []
+                
+                serializer = PharmacySerializer(
+                pharmacy, many=False, context={'request': request})
+                return Response(serializer.data)
+
+    @action(methods=['get'], detail=False)
+    def pharmacyCustomers(self, request, pk=None):
+        if request.method == "GET":
+
+            myPharmacyCustomers = self.request.query_params.get('myPharmacyCustomers', None)
+            if myPharmacyCustomers == "true":
+                user = WasteUser.objects.get(user=request.auth.user)
+                pharmacyId = user.pharmacy_id
+                pharmacy = Pharmacy.objects.get(id=pharmacyId)
+                pharmacy.customers = WasteUser.objects.filter(pharmacycustomers__pharmacy=pharmacy)
+                
+                serializer = PharmacyCustomerSerializer(
+                pharmacy, many=False, context={'request': request})
+                return Response(serializer.data)
+
+
+    
+
+
+class UserSerializer(serializers.ModelSerializer):
+    """JSON serializer for Users
+    Arguments: Serializer type
+    """
+    class Meta:
+        model = User
+        fields = ('id', 'first_name', 'last_name', 'username')
+
+
+class WasteUserSerializer(serializers.ModelSerializer):
+    """JSON serializer for Waste Users
+    Arguments: serializer type
+    """
+    user = UserSerializer(many=False)
+
+    class Meta:
+        model = WasteUser
+        fields = ('id', 'user', 'phone', 'zipcode', 'pharmacy')
+        
+
 class PharmacySerializer(serializers.ModelSerializer):
     """JSON serializer
     Argument:
         serializer type
     """
+
     class Meta:
         model = Pharmacy
         fields = ('id', 'name', 'address', 'zipcode', 'appointment_hours', 'customers')
         depth = 1
+
+class PharmacyCustomerSerializer(serializers.ModelSerializer):
+    """JSON serializer
+    Argument:
+        serializer type
+    """
+    customers = WasteUserSerializer(many=True)
+
+    class Meta:
+        model = Pharmacy
+        fields = ('id', 'name', 'address', 'zipcode', 'appointment_hours', 'customers')
+        depth = 2

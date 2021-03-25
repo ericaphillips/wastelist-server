@@ -4,7 +4,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 from django.views.decorators.csrf import csrf_exempt
-from wastelistapi.models import WasteUser
+from wastelistapi.models import WasteUser, Pharmacy
 
 
 @csrf_exempt

@@ -9,6 +9,7 @@ from rest_framework import status
 from wastelistapi.models import WasteUser
 from django.contrib.auth.models import User
 
+
 class Users(ViewSet):
     def retrieve(self, request, pk=None):
         """Handle GET requests for single User
@@ -55,4 +56,4 @@ class WasteUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = WasteUser
         fields = ('id', 'user', 'phone', 'zipcode', 'pharmacy')
-        depth = 2
+        depth = 1

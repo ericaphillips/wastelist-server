@@ -6,7 +6,7 @@ class WasteUser(models.Model):
     user = models.OneToOneField(User, on_delete=CASCADE)
     phone = models.IntegerField()
     zipcode = models.IntegerField()
-    pharmacy = models.ForeignKey("Pharmacy", on_delete=CASCADE, null = True)
+    pharmacy = models.ForeignKey("Pharmacy", on_delete=CASCADE, null = True, related_name="pharmacypharmacists")
 
     @property
     def pharmacies(self):
