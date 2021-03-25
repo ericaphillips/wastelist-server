@@ -1,0 +1,38 @@
+[
+    {
+        "model": "wastelistapi.message",
+        "pk": 1,
+        "fields": {
+            "sender": 1,
+            "receiver": 6,
+            "content": "You're on today's short list"
+        }
+    },
+    {
+        "model": "wastelistapi.message",
+        "pk": 2,
+        "fields": {
+            "sender": 6,
+            "receiver": 1,
+            "content": "Thanks!"
+        }
+    },
+    {
+        "model": "wastelistapi.message",
+        "pk": 3,
+        "fields": {
+            "sender": 2,
+            "receiver": 6,
+            "content": "You're on today's short list"
+        }
+    },
+    {
+        "model": "wastelistapi.message",
+        "pk": 4,
+        "fields": {
+            "sender": 6,
+            "receiver": 2,
+            "content": "Love to hear it"
+        }
+    }
+]

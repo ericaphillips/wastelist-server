@@ -11,5 +11,5 @@ class Pharmacy(models.Model):
             return self.__customers
 
     @customers.setter
-    def tags(self, value):
+    def customers(self, value):
             self.__customers = value 

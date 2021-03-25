@@ -15,9 +15,12 @@ class Messages(ViewSet):
         # Create a new Python instance of the class
         # and set its properties from what was sent
         # in the body of the request from the client
+        user = WasteUser.objects.get(user=request.auth.user)
         message = Message()
-        message.sender = request.data['sender']
-        message.receiver = request.data['receiver']
+        message.sender = user
+
+        receiver = WasteUser.objects.get(user=request.data["receiver"])
+        message.receiver = receiver
         message.content = request.data['content']
 
         # Try to save the new mesage to the database
@@ -55,11 +58,11 @@ class Messages(ViewSet):
         Returns:
             Response -- JSON serialized list of messages
         """
-        # Get all message records from the database
-        messages = Message.objects.all()
-
-
-        # Support filtering by type
+        # Get message records for user from the database
+        user = WasteUser.objects.get(user=request.auth.user)
+        sent_messages = Message.objects.filter(sender=user)
+        received_messages = Message.objects.filter(receiver=user)
+        messages = sent_messages | received_messages
         
         serializer = MessageSerializer(
             messages, many=True, context={'request': request})
@@ -94,5 +97,5 @@ class MessageSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Message
-        fields = ('id', 'sender', 'receiver')
-        depth = 1
+        fields = ('id', 'sender', 'receiver', 'content')
+        depth = 2
