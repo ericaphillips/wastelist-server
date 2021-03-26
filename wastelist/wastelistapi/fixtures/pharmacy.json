@@ -38,5 +38,65 @@
             "zipcode": 37209,
             "appointment_hours": "Monday-Friday 11AM-6PM, Saturday + Sunday 11AM-4PM"
         }
+    },
+    {
+        "model": "wastelistapi.pharmacy",
+        "pk": 5,
+        "fields": {
+            "name": "Walmart",
+            "address": "3458 Dickerson Pike",
+            "zipcode": 37207,
+            "appointment_hours": "Monday-Friday 9AM-6PM, Saturday + Sunday 10AM-6PM"
+        }
+    },
+    {
+        "model": "wastelistapi.pharmacy",
+        "pk": 6,
+        "fields": {
+            "name": "Walmart",
+            "address": "2421 Powell Ave",
+            "zipcode": 37204,
+            "appointment_hours": "Monday-Friday 9AM-6PM, Saturday + Sunday 10AM-6PM"
+        }
+    },
+    {
+        "model": "wastelistapi.pharmacy",
+        "pk": 7,
+        "fields": {
+            "name": "Walmart",
+            "address": "4424 Lebanon Pike",
+            "zipcode": 37076,
+            "appointment_hours": "Monday-Friday 9AM-6PM, Saturday + Sunday 10AM-6PM"
+        }
+    },
+    {
+        "model": "wastelistapi.pharmacy",
+        "pk": 8,
+        "fields": {
+            "name": "Walmart",
+            "address": "2232 Gallatin Pike N",
+            "zipcode": 37115,
+            "appointment_hours": "Monday-Friday 9AM-6PM, Saturday + Sunday 10AM-6PM"
+        }
+    },
+    {
+        "model": "wastelistapi.pharmacy",
+        "pk": 9,
+        "fields": {
+            "name": "CVS",
+            "address": "2516 Gallatin Ave",
+            "zipcode": 37206,
+            "appointment_hours": "Monday-Friday 10AM-5PM, Saturday + Sunday 11AM-4PM"
+        }
+    },
+    {
+        "model": "wastelistapi.pharmacy",
+        "pk": 10,
+        "fields": {
+            "name": "CVS",
+            "address": "1200 Gallatin Pike S",
+            "zipcode": 37115,
+            "appointment_hours": "Monday-Friday 10AM-5PM, Saturday + Sunday 11AM-4PM"
+        }
     }
 ]
